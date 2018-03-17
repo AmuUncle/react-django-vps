@@ -3,6 +3,7 @@ import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import NotFound from './components/pages/NotFound';
 import Login from './components/pages/Login';
 import App from './App';
+import WrappedRegistrationForm from './components/pages/Register';
 
 export default () => (
     <Router>
@@ -11,6 +12,7 @@ export default () => (
             <Route path="/app" component={App} />
             <Route path="/404" component={NotFound} />
             <Route path="/login" component={Login} />
+            <Route path="/register" component={WrappedRegistrationForm} />
             <Route component={NotFound} />
         </Switch>
     </Router>

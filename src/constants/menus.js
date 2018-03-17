@@ -55,6 +55,7 @@ export const menus = [
         sub: [
             { key: '/login', title: '登录', icon: '', },
             { key: '/404', title: '404', icon: '', },
+            { key: '/register', title: '注册', icon: '', },
         ],
     },
     {

@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchData, receiveData } from '@/action';
 import avtar from "./avtar.png";
+import { Link} from 'react-router-dom';
 
 const FormItem = Form.Item;
 
@@ -95,7 +96,7 @@ class Login extends React.Component {
                                 登录
                             </Button>
                             <p style={{display: 'flex', justifyContent: 'space-between'}}>
-                                <a href="">或 现在就去注册!</a>
+                                <Link to="/register">或 现在就去注册!</Link>
                                 <a onClick={this.gitHub} ><Icon type="github" />(第三方登录)</a>
                             </p>
                         </FormItem>
