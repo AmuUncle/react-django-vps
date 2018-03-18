@@ -232,6 +232,13 @@ class RegistrationForm extends React.Component {
       callback();
     }
   }
+  compareToAdminPhone = (rule, value, callback) => {
+    if (value !== "17602112408") {
+      callback('管理员手机号不正确，请确认后再次输入!');
+    } else {
+      callback();
+    }
+  }
   validateToNextPassword = (rule, value, callback) => {
     const form = this.props.form;
     if (value && this.state.confirmDirty) {
@@ -338,6 +345,21 @@ class RegistrationForm extends React.Component {
             }],
           })(
             <Input type="password" onBlur={this.handleConfirmBlur} />
+          )}
+        </FormItem>
+
+        <FormItem
+          {...formItemLayout}
+          label="管理员手机号"
+        >
+          {getFieldDecorator('admin_phone', {
+            rules: [{
+              required: true, message: '请输入管理员手机号!',
+            }, {
+              validator: this.compareToAdminPhone,
+            }],
+          })(
+            <Input />
           )}
         </FormItem>
 
