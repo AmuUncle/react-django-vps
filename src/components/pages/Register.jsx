@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import avtar from "./avtar.png";
+import { fetchData, receiveData } from '@/action';
 import { Modal } from 'antd';
-import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete } from 'antd';
+import { notification ,Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete } from 'antd';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const AutoCompleteOption = AutoComplete.Option;
@@ -126,7 +127,7 @@ function info() {
 	1、以上规定的范围仅限于<strong>阿木大叔</strong>网站；
 </p>
 <p className="color:#333333;font-family:宋体, &quot;font-size:16px;text-indent:32px;">
-	2、本网会员因违反以上规定而触犯有关法律法规，一切后果自负，<a href="http://china.findlaw.cn/hubei" target="_blank" class="mykey_20101215">湖北</a>省金属网站不承担任何责任；
+	2、本网会员因违反以上规定而触犯有关法律法规，一切后果自负。
 </p>
 <p className="color:#333333;font-family:宋体, &quot;font-size:16px;text-indent:32px;">
 	3、本规则未涉及之问题参见有关法律法规，当本规定与有关法律法规冲突时，以相应的法律法规为准。在本条款规定范围内，<strong>阿木大叔</strong>网站拥有最终解释权。
@@ -161,16 +162,57 @@ function warning() {
   });
 }
 
+const openNotification = (message,description,icon) => {
+  notification.open({
+    message: message,
+    description: description,
+    icon: <Icon type={icon} style={{ color: '#108ee9' }} />,
+  });
+};
+
 class RegistrationForm extends React.Component {
   state = {
     confirmDirty: false,
     autoCompleteResult: [],
   };
+  componentWillMount() {
+        const { receiveData } = this.props;
+        receiveData(null, 'reguser');
+    }
+    componentWillReceiveProps(nextProps) {
+        const { reguser: nextAuth = {} } = nextProps;
+        const { history } = this.props;
+        if (undefined === nextAuth.data)
+        {
+            openNotification("Warning","登录失败，请检查用户名或密码。","frown-o");
+        }
+        if (nextAuth.data && nextAuth.data.reasoncode === 0) {
+            openNotification("Congratulations","注册成功","smile-circle");
+            history.push('/login');
+        }
+        else if (nextAuth.data && nextAuth.data.reasoncode === 1) {
+            openNotification("Congratulations","注册失败，用户已存在！","smile-circle");
+        }
+        else if (nextAuth.data && nextAuth.data.reasoncode === -1) {
+            openNotification("Congratulations","注册失败，用户或密码错误！","smile-circle");
+        }
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
+        //{Nickname: "23", prefix: "86", password: "123", confirm: "123", agreement: true}
         console.log('Received values of form: ', values);
+        if (values.agreement)
+        {
+            const { fetchData } = this.props;
+            console.log('register : ', values);
+            fetchData({funcName: 'register',params: values, stateName: 'reguser'});
+        }
+        else{
+            openNotification("Warning","注册失败，请接受许可条款。","frown-o");
+        }
       }
     });
   }
@@ -181,7 +223,7 @@ class RegistrationForm extends React.Component {
   compareToFirstPassword = (rule, value, callback) => {
     const form = this.props.form;
     if (value && value !== form.getFieldValue('password')) {
-      callback('Two passwords that you enter is inconsistent!');
+      callback('两次密码输入的不同，请确认后再次输入!');
     } else {
       callback();
     }
@@ -259,33 +301,20 @@ class RegistrationForm extends React.Component {
             </span>
           )}
         >
-          {getFieldDecorator('Nickname', {
-            rules: [{ required: true, message: 'Please input your nickname!', whitespace: true }],
+          {getFieldDecorator('userName', {
+            rules: [{ required: true, message: '请输入您的用户名!', whitespace: true }],
           })(
             <Input />
           )}
         </FormItem>
+
         <FormItem
           {...formItemLayout}
-          label="E-mail"
-        >
-          {getFieldDecorator('email', {
-            rules: [{
-              type: 'email', message: 'The input is not valid E-mail!',
-            }, {
-              required: true, message: 'Please input your E-mail!',
-            }],
-          })(
-            <Input />
-          )}
-        </FormItem>
-        <FormItem
-          {...formItemLayout}
-          label="Password"
+          label="密码"
         >
           {getFieldDecorator('password', {
             rules: [{
-              required: true, message: 'Please input your password!',
+              required: true, message: '请输入您的密码!',
             }, {
               validator: this.validateToNextPassword,
             }],
@@ -295,11 +324,11 @@ class RegistrationForm extends React.Component {
         </FormItem>
         <FormItem
           {...formItemLayout}
-          label="Confirm Password"
+          label="确认密码"
         >
           {getFieldDecorator('confirm', {
             rules: [{
-              required: true, message: 'Please confirm your password!',
+              required: true, message: '请再次输入您的密码!',
             }, {
               validator: this.compareToFirstPassword,
             }],
@@ -308,36 +337,32 @@ class RegistrationForm extends React.Component {
           )}
         </FormItem>
 
-
-        <FormItem
-          {...formItemLayout}
-          label="Phone Number"
-        >
-          {getFieldDecorator('phone', {
-            rules: [{ required: true, message: 'Please input your phone number!' }],
-          })(
-            <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
-          )}
-        </FormItem>
-
-
         <FormItem {...tailFormItemLayout}>
           {getFieldDecorator('agreement', {
             valuePropName: 'checked',
           })(
-            <div><Checkbox>I have read the  </Checkbox> <a onClick={info}>agreement</a></div>
+            <div><Checkbox>I have read the  </Checkbox> <a onClick={info}>许可条款</a></div>
           )}
         </FormItem>
         <FormItem {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">Register</Button>
         </FormItem>
       </Form>
-                      </div>
-            </div>
+      </div>
+      </div>
     );
   }
 }
 
-const WrappedRegistrationForm = Form.create()(RegistrationForm);
 
-export default WrappedRegistrationForm;
+
+const mapStateToPorps = state => {
+    const { reguser } = state.httpData;
+    return { reguser };
+};
+const mapDispatchToProps = dispatch => ({
+    fetchData: bindActionCreators(fetchData, dispatch),
+    receiveData: bindActionCreators(receiveData, dispatch)
+});
+
+export default connect(mapStateToPorps, mapDispatchToProps)(Form.create()(RegistrationForm));
