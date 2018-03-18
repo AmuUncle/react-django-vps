@@ -31,6 +31,8 @@ class Login extends React.Component {
         if (undefined === nextAuth.data)
         {
             openNotification("Warning","登录失败，请检查用户名或密码。","frown-o");
+            const { receiveData } = this.props;
+            receiveData(null, 'auth');
         }
         if (nextAuth.data && nextAuth.data.uid) {   // 判断是否登陆
             localStorage.setItem('user', JSON.stringify(nextAuth.data));
