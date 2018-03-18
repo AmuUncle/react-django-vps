@@ -1,10 +1,10 @@
 {
-  "charts.js": "static/js/charts.297b34a0.js",
-  "charts.js.map": "static/js/charts.297b34a0.js.map",
+  "charts.js": "static/js/charts.7335e1af.js",
+  "charts.js.map": "static/js/charts.7335e1af.js.map",
   "main.css": "static/css/main.a5c0e99c.css",
   "main.css.map": "static/css/main.a5c0e99c.css.map",
-  "main.js": "static/js/main.80cfc8e9.js",
-  "main.js.map": "static/js/main.80cfc8e9.js.map",
+  "main.js": "static/js/main.2cfb69d8.js",
+  "main.js.map": "static/js/main.2cfb69d8.js.map",
   "static/js/0.1f9dcd68.chunk.js": "static/js/0.1f9dcd68.chunk.js",
   "static/js/0.1f9dcd68.chunk.js.map": "static/js/0.1f9dcd68.chunk.js.map",
   "static\\media\\amuuncle.jpg": "static/media/amuuncle.8452a73c.jpg",
@@ -12,6 +12,6 @@
   "static\\media\\beauty.jpg": "static/media/beauty.defb9858.jpg",
   "static\\media\\default-skin.svg": "static/media/default-skin.b257fa9c.svg",
   "static\\media\\y6oxFxU60dYw9khW6q8jGw.woff2": "static/media/y6oxFxU60dYw9khW6q8jGw.3c9ecb33.woff2",
-  "vendor.js": "static/js/vendor.4c2d2180.js",
-  "vendor.js.map": "static/js/vendor.4c2d2180.js.map"
+  "vendor.js": "static/js/vendor.33ab4b82.js",
+  "vendor.js.map": "static/js/vendor.33ab4b82.js.map"
 }

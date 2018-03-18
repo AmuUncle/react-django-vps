@@ -184,7 +184,7 @@ class RegistrationForm extends React.Component {
         const { history } = this.props;
         if (undefined === nextAuth.data)
         {
-            openNotification("Warning","登录失败，请检查用户名或密码。","frown-o");
+            openNotification("Warning","注册失败，请检查用户名或密码。","frown-o");
         }
         if (nextAuth.data && nextAuth.data.reasoncode === 0) {
             openNotification("Congratulations","注册成功","smile-circle");
@@ -192,9 +192,13 @@ class RegistrationForm extends React.Component {
         }
         else if (nextAuth.data && nextAuth.data.reasoncode === 1) {
             openNotification("Congratulations","注册失败，用户已存在！","smile-circle");
+            const { receiveData } = this.props;
+            receiveData(null, 'reguser');
         }
         else if (nextAuth.data && nextAuth.data.reasoncode === -1) {
             openNotification("Congratulations","注册失败，用户或密码错误！","smile-circle");
+            const { receiveData } = this.props;
+            receiveData(null, 'reguser');
         }
   }
 
@@ -341,7 +345,7 @@ class RegistrationForm extends React.Component {
           {getFieldDecorator('agreement', {
             valuePropName: 'checked',
           })(
-            <div><Checkbox>I have read the  </Checkbox> <a onClick={info}>许可条款</a></div>
+            <div><Checkbox>我已阅读  </Checkbox> <a onClick={info}>许可条款</a></div>
           )}
         </FormItem>
         <FormItem {...tailFormItemLayout}>
