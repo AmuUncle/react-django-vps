@@ -40,10 +40,18 @@ const WysiwygBundle = (props) => (
 export default class CRouter extends Component {
     requireAuth = (permission, component) => {
         const auth = JSON.parse(localStorage.getItem('user'))
-        const { permissions } = auth;
-        // const { auth } = store.getState().httpData;
-        if (!permissions || !permissions.includes(permission)) return <Redirect to={'/login'} />;
-        return component;
+        if (auth)
+        {
+                const permissions  = auth.permissions;
+                // const { auth } = store.getState().httpData;
+                if (!permissions || !permissions.includes(permission))
+                {
+
+                }
+                return component;
+        }
+        return <Redirect to={'/login'} />;
+
     };
     render() {
         return (
