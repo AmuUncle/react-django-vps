@@ -46,17 +46,8 @@ class Login extends React.Component {
             if (!err) {
                 console.log('Received values of form: ', values);
                 const { fetchData } = this.props;
-              //  if (values.userName !== 'hudejie' && values.password !== 'hdj@1012')
-             //   {
-                    fetchData({funcName: 'admin',params: values, stateName: 'auth'});
-                    //openNotification("Congratulations","登录成功","smile-circle");
-                //}
-                //else
-               // {
-                   // openNotification("Warning","登录失败，请检查用户名或密码。","frown-o");
-                //}
-                //if (values.userName === 'guest' && values.password === 'guest') fetchData({funcName: 'guest', stateName: 'auth'});
-            }
+                fetchData({funcName: 'admin',params: values, stateName: 'auth'});
+                }
         });
     };
     gitHub = () => {

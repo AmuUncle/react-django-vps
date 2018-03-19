@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import avtar from "./avtar.png";
 import { fetchData, receiveData } from '@/action';
+import { Link} from 'react-router-dom';
 import { Modal } from 'antd';
 import { notification ,Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete } from 'antd';
 const FormItem = Form.Item;
@@ -233,7 +234,7 @@ class RegistrationForm extends React.Component {
     }
   }
   compareToAdminPhone = (rule, value, callback) => {
-    if (value !== "17602112408") {
+    if (value && value !== "17602112408") {
       callback('管理员手机号不正确，请确认后再次输入!');
     } else {
       callback();
@@ -295,34 +296,21 @@ class RegistrationForm extends React.Component {
     ));
 
     return (
-    <div className="register">
+    <div className="register" layout='horizontal'>
       <div className="register-form" >
           <div className="register-logo">
                         <img src={avtar} />
           </div>
       <Form onSubmit={this.handleSubmit}>
-         <FormItem
-          {...formItemLayout}
-          label={(
-            <span>
-              用户名&nbsp;
-              <Tooltip title="What do you want others to call you?">
-                <Icon type="question-circle-o" />
-              </Tooltip>
-            </span>
-          )}
-        >
+         <FormItem>
           {getFieldDecorator('userName', {
             rules: [{ required: true, message: '请输入您的用户名!', whitespace: true }],
           })(
-            <Input />
+            <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="用户名" />
           )}
         </FormItem>
 
-        <FormItem
-          {...formItemLayout}
-          label="密码"
-        >
+        <FormItem>
           {getFieldDecorator('password', {
             rules: [{
               required: true, message: '请输入您的密码!',
@@ -330,13 +318,10 @@ class RegistrationForm extends React.Component {
               validator: this.validateToNextPassword,
             }],
           })(
-            <Input type="password" />
+            <Input type="password" prefix={<Icon type="lock" style={{ fontSize: 13 }} />} placeholder="密码" />
           )}
         </FormItem>
-        <FormItem
-          {...formItemLayout}
-          label="确认密码"
-        >
+        <FormItem>
           {getFieldDecorator('confirm', {
             rules: [{
               required: true, message: '请再次输入您的密码!',
@@ -344,13 +329,11 @@ class RegistrationForm extends React.Component {
               validator: this.compareToFirstPassword,
             }],
           })(
-            <Input type="password" onBlur={this.handleConfirmBlur} />
+            <Input type="password" onBlur={this.handleConfirmBlur} prefix={<Icon type="lock" style={{ fontSize: 13 }} />} placeholder="确认密码" />
           )}
         </FormItem>
 
         <FormItem
-          {...formItemLayout}
-          label="管理员手机号"
         >
           {getFieldDecorator('admin_phone', {
             rules: [{
@@ -359,7 +342,7 @@ class RegistrationForm extends React.Component {
               validator: this.compareToAdminPhone,
             }],
           })(
-            <Input />
+            <Input prefix={<Icon type="phone" style={{ fontSize: 13 }} />} placeholder="管理员手机号" />
           )}
         </FormItem>
 
@@ -370,8 +353,9 @@ class RegistrationForm extends React.Component {
             <div><Checkbox>我已阅读  </Checkbox> <a onClick={info}>许可条款</a></div>
           )}
         </FormItem>
-        <FormItem {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit">Register</Button>
+        <FormItem className="register-submit">
+          <Button type="primary" htmlType="submit">注册</Button>
+          <Button type="primary"><Link to="/login">返回</Link></Button>
         </FormItem>
       </Form>
       </div>

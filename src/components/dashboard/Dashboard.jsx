@@ -4,13 +4,15 @@
 import React from 'react';
 import { Link} from 'react-router-dom';
 import { Row, Col, Card, Timeline, Icon } from 'antd';
+import { Avatar } from 'antd';
 import Iframe from 'react-iframe';
 import BreadcrumbCustom from '../BreadcrumbCustom';
 import EchartsViews from './EchartsViews';
 import EchartsProjects from './EchartsProjects';
 import b1 from '../../style/imgs/amuuncle.jpg';
 import {VideoPlayer} from 'react-video-players';
-
+import AutoPlay from '../ui/banners/AutoPlay';
+import EchartTableAuto from './EchartTableAuto';
 
 
 class Dashboard extends React.Component {
@@ -91,7 +93,7 @@ class Dashboard extends React.Component {
                     <Col className="gutter-row" md={16}>
                         <div className="gutter-box">
                             <Card bordered={false} className={'no-padding'}>
-                                <EchartsProjects />
+                                <EchartTableAuto />
                             </Card>
                         </div>
                     </Col>
@@ -100,7 +102,7 @@ class Dashboard extends React.Component {
                     <Col className="gutter-row" md={8}>
                         <div className="gutter-box"onClick ={this.controlPlay}>
                             <Card bordered={false} >
-                           {/* <Iframe url="//music.163.com/outchain/player?type=2&id=483671599&auto=1&height=66"
+                           <Iframe url="//music.163.com/outchain/player?type=2&id=483671599&auto=1&height=66"
                                         width="300px"
                                         height="110px"
                                         id="myId"
@@ -108,9 +110,9 @@ class Dashboard extends React.Component {
                                         display="initial"
                                         position="relative"
                                         allowFullScreen/>
-                                        */}
+                           {/*
                                     <VideoPlayer loop play={this.state.play}  src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" />
-
+                                */}
                             </Card>
                         </div>
                     </Col>
@@ -124,7 +126,7 @@ class Dashboard extends React.Component {
                                 <ul className="list-group no-border">
                                     <li className="list-group-item">
                                         <a href="" className="pull-left w-40 mr-m">
-                                            <img src={b1} className="img-responsive img-circle" alt="test" />
+                                             <Avatar src={b1} />
                                         </a>
                                         <div className="clear">
                                             <a href="" className="block">鸣人</a>
@@ -133,7 +135,7 @@ class Dashboard extends React.Component {
                                     </li>
                                     <li className="list-group-item">
                                         <a href="" className="pull-left w-40 mr-m">
-                                            <img src={b1} className="img-responsive img-circle" alt="test" />
+                                            <Avatar src={b1} />
                                         </a>
                                         <div className="clear">
                                             <a href="" className="block">佐助</a>
@@ -142,7 +144,7 @@ class Dashboard extends React.Component {
                                     </li>
                                     <li className="list-group-item">
                                         <a href="" className="pull-left w-40 mr-m">
-                                            <img src={b1} className="img-responsive img-circle" alt="test" />
+                                            <Avatar src={b1} />
                                         </a>
                                         <div className="clear">
                                             <a href="" className="block">小樱</a>
@@ -151,7 +153,7 @@ class Dashboard extends React.Component {
                                     </li>
                                     <li className="list-group-item">
                                         <a href="" className="pull-left w-40 mr-m">
-                                            <img src={b1} className="img-responsive img-circle" alt="test" />
+                                            <Avatar src={b1} />
                                         </a>
                                         <div className="clear">
                                             <a href="" className="block">雏田</a>

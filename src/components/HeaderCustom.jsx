@@ -6,13 +6,21 @@ import { Menu, Icon, Layout, Badge, Popover } from 'antd';
 import screenfull from 'screenfull';
 import { gitOauthToken, gitOauthInfo } from '../axios';
 import { queryString } from '../utils';
-import avater from '../style/imgs/amuuncle.jpg';
+import avater from '../style/imgs/yuanyuan.jpg';
 import SiderCustom from './SiderCustom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 const { Header } = Layout;
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
+const text = <span>Title</span>;
+const content = (
+  <div>
+    <p>Content</p>
+    <p>Content</p>
+  </div>
+);
+
 
 class HeaderCustom extends Component {
     state = {
@@ -21,22 +29,7 @@ class HeaderCustom extends Component {
     };
     componentDidMount() {
         const QueryString = queryString();
-        // if (QueryString.hasOwnProperty('code')) {
-        //     console.log(QueryString);
-        //     const _user = JSON.parse(localStorage.getItem('user'));
-        //     !_user && gitOauthToken(QueryString.code).then(res => {
-        //         console.log(res);
-        //         gitOauthInfo(res.access_token).then(info => {
-        //             this.setState({
-        //                 user: info
-        //             });
-        //             localStorage.setItem('user', JSON.stringify(info));
-        //         });
-        //     });
-        //     _user && this.setState({
-        //         user: _user
-        //     });
-        // }
+
         const _user = JSON.parse(localStorage.getItem('user')) || '测试';
         if (!_user && QueryString.hasOwnProperty('code')) {
             gitOauthToken(QueryString.code).then(res => {
