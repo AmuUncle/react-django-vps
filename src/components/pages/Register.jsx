@@ -172,7 +172,10 @@ const openNotification = (message,description,icon) => {
 };
 
 class RegistrationForm extends React.Component {
-0.
+  state = {
+    confirmDirty: false,
+    autoCompleteResult: [],
+  };
   componentWillMount() {
         const { receiveData } = this.props;
         receiveData(null, 'reguser');
