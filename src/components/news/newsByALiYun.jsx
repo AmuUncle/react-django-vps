@@ -60,7 +60,7 @@ class Gallery extends React.Component {
 
         const imgsTag = this.state.imgs.map(v1 => (
             v1.map(v2 => (
-                <div className="gutter-box">
+                <div className="gutter-box" key={v2.title}>
                 <a href="http://mini.eastday.com/mobile/180303221434843.html" target="_blank" rel="noopener noreferrer">
                     <Card bordered={false} bodyStyle={{ padding: 0 }} >
                         <div>

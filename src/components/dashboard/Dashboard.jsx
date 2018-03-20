@@ -13,7 +13,7 @@ import b1 from '../../style/imgs/amuuncle.jpg';
 import {VideoPlayer} from 'react-video-players';
 import AutoPlay from '../ui/banners/AutoPlay';
 import EchartTableAuto from './EchartTableAuto';
-
+import CountUp from 'react-countup'
 
 class Dashboard extends React.Component {
 
@@ -41,7 +41,17 @@ class Dashboard extends React.Component {
                                     </div>
                                     <div className="clear">
                                         <div className="text-muted">收藏</div>
-                                        <h2>301</h2>
+                                        <h2>
+                                        <CountUp
+                                                        start={0}
+                                                        end={301}
+                                                        duration={2.75}
+                                                        useEasing
+                                                        useGrouping
+                                                        separator=","
+
+                                                      />
+                                        </h2>
                                     </div>
                                 </div>
                             </Card>
@@ -54,7 +64,15 @@ class Dashboard extends React.Component {
                                     </div>
                                     <div className="clear">
                                         <div className="text-muted">云数据</div>
-                                        <h2>30122</h2>
+                                        <h2>
+                                              <CountUp
+                                                        start={20000}
+                                                        end={31025}
+                                                        duration={2.75}
+                                                        useEasing
+                                                        useGrouping
+                                                        separator=","
+                                                      /></h2>
                                     </div>
                                 </div>
                             </Card>
@@ -70,7 +88,15 @@ class Dashboard extends React.Component {
                                     </div>
                                     <div className="clear">
                                         <div className="text-muted">照片</div>
-                                        <h2>802</h2>
+                                        <h2>
+                                               <CountUp
+                                                        start={0}
+                                                        end={802}
+                                                        duration={2.75}
+                                                        useEasing
+                                                        useGrouping
+                                                        separator=","
+                                                      /></h2>
                                     </div>
                                 </div>
                             </Card>
@@ -84,7 +110,16 @@ class Dashboard extends React.Component {
                                     </div>
                                     <div className="clear">
                                         <div className="text-muted">邮件</div>
-                                        <h2>102</h2>
+                                        <h2>
+                                           <CountUp
+                                                        start={0}
+                                                        end={102}
+                                                        duration={0.75}
+                                                        useEasing
+                                                        useGrouping
+                                                        separator=","
+
+                                                      /></h2>
                                     </div>
                                 </div>
                             </Card>

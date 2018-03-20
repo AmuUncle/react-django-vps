@@ -2,7 +2,7 @@
  * Created by hao.cheng on 2017/4/13.
  */
 import React, { Component } from 'react';
-import { Menu, Icon, Layout, Badge, Popover } from 'antd';
+import { Menu, Icon, Layout, Badge, Popover,  Modal, message} from 'antd';
 import screenfull from 'screenfull';
 import { gitOauthToken, gitOauthInfo } from '../axios';
 import { queryString } from '../utils';
@@ -10,6 +10,11 @@ import avater from '../style/imgs/yuanyuan.jpg';
 import SiderCustom from './SiderCustom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import CopyToClipboard from 'react-copy-to-clipboard';
+
+var QRCode = require('qrcode.react');
+
+
 const { Header } = Layout;
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
@@ -26,6 +31,7 @@ class HeaderCustom extends Component {
     state = {
         user: '',
         visible: false,
+        modal2Visible: false,
     };
     componentDidMount() {
         const QueryString = queryString();
@@ -68,6 +74,10 @@ class HeaderCustom extends Component {
     handleVisibleChange = (visible) => {
         this.setState({ visible });
     };
+    setModal2Visible = (visible) =>  {
+        let modal2Visible = this.state.modal2Visible;
+        this.setState({ modal2Visible:!modal2Visible });
+    }
     render() {
         const { responsive, path } = this.props;
         return (
@@ -101,7 +111,7 @@ class HeaderCustom extends Component {
                     <SubMenu title={<span className="avatar"><img src={avater} alt="头像" /><i className="on bottom b-white" /></span>}>
                         <MenuItemGroup title="用户中心">
                             <Menu.Item key="setting:1">你好 - {this.props.user.userName}</Menu.Item>
-                            <Menu.Item key="setting:2">个人信息</Menu.Item>
+                            <Menu.Item key="setting:2"><span onClick={this.setModal2Visible}>个人信息</span></Menu.Item>
                             <Menu.Item key="logout"><span onClick={this.logout}>退出登录</span></Menu.Item>
                         </MenuItemGroup>
                         <MenuItemGroup title="设置中心">
@@ -110,6 +120,30 @@ class HeaderCustom extends Component {
                         </MenuItemGroup>
                     </SubMenu>
                 </Menu>
+                        <Modal
+                          title="保存网站二维码"
+                          wrapClassName="vertical-center-modal"
+                          visible={this.state.modal2Visible}
+                          onOk={() => this.setModal2Visible(false)}
+                          onCancel={() => this.setModal2Visible(false)}
+                          style={{ weight: 120 }}
+                        >
+                        <div className="center" style={{height: '100%',  overflow: 'hidden'}}>
+                        <CopyToClipboard text='http://songyuanyuan.com/' onCopy={() => message.info("已复制网站域名到粘贴板")}>
+                             <QRCode
+                                      className="center"
+                                      value='http://songyuanyuan.com/'
+                                      size={256}
+                                      fgColor='#000000'
+                                      bgColor='#ffffff'
+                                      level='L'
+                                      renderAs='svg'
+                                    />
+                        </CopyToClipboard>
+
+                        </div>
+
+                        </Modal>
                 <style>{`
                     .ant-menu-submenu-horizontal > .ant-menu {
                         width: 120px;

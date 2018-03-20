@@ -2,13 +2,14 @@
  * Created by hao.cheng on 2017/4/16.
  */
 import React from 'react';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, Row, Col } from 'antd';
 import { notification } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchData, receiveData } from '@/action';
 import avtar from "./avtar.png";
 import { Link} from 'react-router-dom';
+import Vcode from 'react-vcode';
 
 const FormItem = Form.Item;
 
@@ -21,6 +22,9 @@ const openNotification = (message,description,icon) => {
 };
 
 class Login extends React.Component {
+      state = {
+        code:"",
+      };
     componentWillMount() {
         const { receiveData } = this.props;
         receiveData(null, 'auth');
@@ -54,6 +58,15 @@ class Login extends React.Component {
         window.location.href = 'https://github.com/login/oauth/authorize?client_id=792cdcd244e98dcd2dee&redirect_uri=http://localhost:3006/&scope=user&state=reactAdmin';
     };
 
+  compareToCode = (rule, value, callback) => {
+    let code = this.state.code;
+    if (value && value.toUpperCase() !== code) {
+      callback('验证码不正确，不区分大小写!');
+    } else {
+      callback();
+    }
+  }
+
     render() {
         const { getFieldDecorator } = this.props.form;
         return (
@@ -77,6 +90,31 @@ class Login extends React.Component {
                                 <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="管理员输入admin, 游客输入guest" />
                             )}
                         </FormItem>
+                        <FormItem>
+                           <Row gutter={8}>
+                                <Col span={12}>
+                            {getFieldDecorator('code', {
+                                rules: [{ required: true, message: '请输入验证码!' }
+                                , {
+                                      validator: this.compareToCode,
+                                    }],
+                            })(
+                                <Input prefix={<Icon type="key" style={{ fontSize: 13 }} />} placeholder="验证码" />
+                            )}
+                            </Col>
+                            <Col span={12}>
+                              <Vcode
+                                  id='test'
+                                  length={4}
+                                  onChange={(v) => {this.setState({code:v})}}
+                                  options={{ codes: [ 'A', 'B', 'C' , 'D', 'E' , 'F', 'G' , 'H', 'I' , 'J', 'K' , 'L',
+                                  'M' , 'N', 'O' , 'P', 'Q' , 'R', 'S' , 'T', 'U' , 'V', 'W' , 'X', 'Y', 'Z'] }}
+                                />
+                            </Col>
+                             </Row>
+                        </FormItem>
+
+
                         <FormItem>
                             {getFieldDecorator('remember', {
                                 valuePropName: 'checked',
