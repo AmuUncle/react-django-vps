@@ -57,6 +57,10 @@ class SiderCustom extends Component {
             firstHide: false,
         })
     };
+    logoClick = () =>
+    {
+        this.props.history.push('/')
+    }
     render() {
         return (
             <Sider
@@ -66,7 +70,7 @@ class SiderCustom extends Component {
                 style={{ overflowY: 'auto' }}
             >
                   <div className="siderlogo">
-                    <img alt="logo" src={avtar} />
+                    <img alt="logo" src={avtar} onClick={this.logoClick}/>
                     {this.props.collapsed ? '' : <span>阿木大叔</span>}
                   </div>
 

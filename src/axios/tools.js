@@ -5,6 +5,8 @@
 import axios from 'axios';
 import { message } from 'antd';
 
+axios.defaults.timeout = 10 * 1000;
+
 /**
  * 公用get请求
  * @param url       接口地址

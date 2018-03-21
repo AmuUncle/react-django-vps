@@ -2,7 +2,7 @@
  * Created by hao.cheng on 2017/4/13.
  */
 import React, { Component } from 'react';
-import { Menu, Icon, Layout, Badge, Popover,  Modal, message} from 'antd';
+import { Menu, Icon, Layout, Badge, Popover,  Modal, message, BackTop} from 'antd';
 import screenfull from 'screenfull';
 import { gitOauthToken, gitOauthInfo } from '../axios';
 import { queryString } from '../utils';
@@ -150,6 +150,8 @@ class HeaderCustom extends Component {
                         left: -40px;
                     }
                 `}</style>
+
+                <BackTop />
             </Header>
         )
     }

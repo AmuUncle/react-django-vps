@@ -41,3 +41,5 @@ export const guest = () => get({url: config.MOCK_AUTH_VISITOR});
 export const register = (params) => post({url: config.MOCK_AUTH_ADMIN_REG, data:{...params}});
 
 export const imgslist = () => get({url: config.MOCK_REQUEST_IMGS});
+
+export const weather = () => get({url: config.MOCK_REQUEST_WEATHER});

@@ -14,6 +14,7 @@ import {VideoPlayer} from 'react-video-players';
 import AutoPlay from '../ui/banners/AutoPlay';
 import EchartTableAuto from './EchartTableAuto';
 import CountUp from 'react-countup'
+import Weather from './weather';
 
 class Dashboard extends React.Component {
 
@@ -125,10 +126,23 @@ class Dashboard extends React.Component {
                             </Card>
                         </div>
                     </Col>
-                    <Col className="gutter-row" md={16}>
+                    <Col className="gutter-row" md={10}>
                         <div className="gutter-box">
-                            <Card bordered={false} className={'no-padding'}>
+                            <Card bordered={false} className={'no-padding '}
+                                >
                                 <EchartTableAuto />
+                            </Card>
+                        </div>
+                    </Col>
+                    <Col className="gutter-row" md={6}>
+                        <div className="gutter-box animated zoomIn">
+                            <Card bordered={false}
+                                bodyStyle={{
+                                  padding: 0,
+                                  height: 214,
+                                  background: '#8fc9fb',
+                                }}>
+                                <Weather />
                             </Card>
                         </div>
                     </Col>
