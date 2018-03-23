@@ -17,6 +17,14 @@ import delImgIcon from '../../style/imgs/delete.png';
 
 const text = '确认删除?';
 
+function first(arr,v2){
+    for(var i= 0;i< arr.length;i++){
+        if( arr[i].src == v2 )
+        {
+        return i;
+        }
+    }
+}
 
 
 class Gallery extends React.Component {
@@ -39,15 +47,24 @@ class Gallery extends React.Component {
         this.closeGallery();
     };
     openGallery = (item) => {
-        const items = [
+        const items2 = [
             {
                 src: item,
                 w: 0,
                 h: 0,
             }
         ];
+        var items =[];
+        const items_temp = this.state.imgs.map(v1 => (
+            v1.map(v2 => (items.push(
+            {
+                src: v2,
+                w: 0,
+                h: 0,
+            } )  ) )))
         const pswpElement = this.pswpElement;
-        const options = {index: 0};
+        console.log(first(items, item));
+        const options = {index: first(items, item)};
         this.gallery = new PhotoSwipe( pswpElement, PhotoswipeUIDefault, items, options);
         this.gallery.listen('gettingData', (index, item) => {
             const _this = this;
@@ -69,7 +86,7 @@ class Gallery extends React.Component {
         this.gallery.close();
     };
     confirm = (v2) =>{
-      message.info('Click on Yes.');
+
       console.log(v2);
       this.setState({delImg:v2});
       const { fetchData } = this.props;
@@ -77,7 +94,7 @@ class Gallery extends React.Component {
       setTimeout(() => {
             fetchData({funcName: 'imgslist',params: {}, stateName: 'imgslist'});
         }, 500);
-
+        message.info('删除成功');
     }
 
     render() {
@@ -144,8 +161,6 @@ class Gallery extends React.Component {
                                 <div className="pswp__counter" />
 
                                 <button className="pswp__button pswp__button--close" title="Close (Esc)" />
-
-                                <button className="pswp__button pswp__button--share" title="Share" />
 
                                 <button className="pswp__button pswp__button--fs" title="Toggle fullscreen" />
 

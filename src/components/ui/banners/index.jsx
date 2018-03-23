@@ -6,7 +6,7 @@ import { Row, Col, Card } from 'antd';
 import BreadcrumbCustom from '../../BreadcrumbCustom';
 import Basic from './Basic';
 import AutoPlay from './AutoPlay';
-// import Custom from './Custom';
+import Custom from './Custom';
 
 class Banners extends React.Component {
     render() {
@@ -32,7 +32,7 @@ class Banners extends React.Component {
                         <div className="gutter-box">
                             <Card title="自定义左右箭头与缩略图" bordered={false}>
                                 {/*引入自定义会导致组件冲突不显示*/}
-                                {/*<Custom />*/}
+                                <Custom />
                             </Card>
                         </div>
                     </Col>

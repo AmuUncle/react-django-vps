@@ -9,6 +9,7 @@ export const menus = [
     {
         key: '/app/ui', title: 'UI', icon: 'scan',
         sub: [
+            { key: '/app/ui/PicturesWall', title: '图片上传', icon: '', },
             { key: '/app/ui/number', title: '号码归属地', icon: '', },
             { key: '/app/ui/buttons', title: '按钮', icon: '', },
             { key: '/app/ui/icons', title: '图标', icon: '', },

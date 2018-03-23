@@ -2,10 +2,10 @@
  * Created by hao.cheng on 2017/4/26.
  */
 import React from 'react';
-import BannerAnim from 'rc-banner-anim';
+import BannerAnim,{Element} from 'rc-banner-anim';
 import TweenOne, { TweenOneGroup } from 'rc-tween-one';
 import 'rc-banner-anim/assets/index.css';
-const { Element, Arrow, Thumb } = BannerAnim;
+const { Arrow, Thumb } = BannerAnim;
 const BgElement = Element.BgElement;
 class Custom extends React.Component {
     constructor() {

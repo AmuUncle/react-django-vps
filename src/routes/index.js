@@ -30,6 +30,7 @@ import Cssmodule from '../components/cssmodule';
 import newsByALiYun from '../components/news/newsByALiYun';
 import Number from '../components/ui/Number';
 import FetchDemo from '../components/chat/chat';
+import PicturesWall from '../components/ui/PicturesWall';
 
 const WysiwygBundle = (props) => (
     <Bundle load={Wysiwyg}>
@@ -75,6 +76,7 @@ export default class CRouter extends Component {
                 <Route exact path="/app/ui/drags" component={Drags} />
                 <Route exact path="/app/ui/gallery" component={Gallery} />
                 <Route exact path="/app/ui/number" component={Number} />
+                <Route exact path="/app/ui/PicturesWall" component={PicturesWall} />
 
                 <Route exact path="/app/animation/basicAnimations" component={BasicAnimations} />
                 <Route exact path="/app/animation/exampleAnimations" component={ExampleAnimations} />
