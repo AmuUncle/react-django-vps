@@ -2,6 +2,9 @@
  * Created by hao.cheng on 2017/5/3.
  */
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchData, receiveData } from '@/action';
 import { Link} from 'react-router-dom';
 import { Row, Col, Card, Timeline, Icon } from 'antd';
 import { Avatar } from 'antd';
@@ -15,12 +18,27 @@ import AutoPlay from '../ui/banners/AutoPlay';
 import EchartTableAuto from './EchartTableAuto';
 import CountUp from 'react-countup'
 import Weather from './weather';
+import EchartsEffectScatter from '../charts/EchartsEffectScatter';
 
 class Dashboard extends React.Component {
 
   state = {
     play: false,
+    dash:{},
   };
+
+  componentDidMount() {
+        const { fetchData } = this.props;
+        fetchData({funcName: 'dash',params: {}, stateName: 'dash'});
+  }
+  componentWillReceiveProps(nextProps) {
+        const { dash: nextAuth = {} } = nextProps;
+        if (nextAuth.data && nextAuth.data.dash) {
+            console.log(nextAuth.data.dash);
+            this.setState({dash: nextAuth.data.dash});
+        }
+    }
+
     controlPlay =() =>
     {
         let play = this.state.play;
@@ -45,7 +63,7 @@ class Dashboard extends React.Component {
                                         <h2>
                                         <CountUp
                                                         start={0}
-                                                        end={301}
+                                                        end={this.state.dash.Collection}
                                                         duration={2.75}
                                                         useEasing
                                                         useGrouping
@@ -68,7 +86,7 @@ class Dashboard extends React.Component {
                                         <h2>
                                               <CountUp
                                                         start={20000}
-                                                        end={31025}
+                                                        end={this.state.dash.yun_data}
                                                         duration={2.75}
                                                         useEasing
                                                         useGrouping
@@ -92,7 +110,7 @@ class Dashboard extends React.Component {
                                         <h2>
                                                <CountUp
                                                         start={0}
-                                                        end={802}
+                                                        end={this.state.dash.imgs}
                                                         duration={2.75}
                                                         useEasing
                                                         useGrouping
@@ -114,7 +132,7 @@ class Dashboard extends React.Component {
                                         <h2>
                                            <CountUp
                                                         start={0}
-                                                        end={102}
+                                                        end={this.state.dash.email}
                                                         duration={0.75}
                                                         useEasing
                                                         useGrouping
@@ -126,7 +144,7 @@ class Dashboard extends React.Component {
                             </Card>
                         </div>
                     </Col>
-                    <Col className="gutter-row" md={10}>
+                    <Col className="gutter-row" md={8}>
                         <div className="gutter-box">
                             <Card bordered={false} className={'no-padding '}
                                 >
@@ -134,7 +152,7 @@ class Dashboard extends React.Component {
                             </Card>
                         </div>
                     </Col>
-                    <Col className="gutter-row" md={6}>
+                    <Col className="gutter-row" md={8}>
                         <div className="gutter-box animated zoomIn">
                             <Card bordered={false}
                                 bodyStyle={{
@@ -148,12 +166,21 @@ class Dashboard extends React.Component {
                     </Col>
                 </Row>
                 <Row gutter={10}>
+                    <Col className="gutter-row" md={24}>
+                        <div className="gutter-box">
+                            <Card  bordered={false}>
+                                <EchartsEffectScatter />
+                            </Card>
+                        </div>
+                    </Col>
+                </Row>
+                <Row gutter={10}>
                     <Col className="gutter-row" md={8}>
                         <div className="gutter-box"onClick ={this.controlPlay}>
                             <Card bordered={false} >
                            <Iframe url="//music.163.com/outchain/player?type=2&id=430043767&auto=1&height=66"
-                                        width="300px"
-                                        height="110px"
+                                        width='100%'
+                                        height="100px"
                                         id="myId"
                                         className="myClassname"
                                         display="initial"
@@ -231,4 +258,14 @@ class Dashboard extends React.Component {
     }
 }
 
-export default Dashboard;
+const mapStateToPorps = state => {
+    const { dash } = state.httpData;
+    return { dash };
+};
+const mapDispatchToProps = dispatch => ({
+    fetchData: bindActionCreators(fetchData, dispatch),
+    receiveData: bindActionCreators(receiveData, dispatch)
+});
+
+
+export default connect(mapStateToPorps, mapDispatchToProps)(Dashboard);

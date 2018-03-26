@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { Row, Col, Card, Button, Radio, Icon, Menu, Dropdown } from 'antd';
 
  class FetchDemo extends React.Component {
   constructor() {
@@ -51,14 +52,14 @@ import ReactDOM from 'react-dom';
         <div className="msg-list" ref="msgList">
           {megArray.map((elem,index) => (
             <div className="container" key={index}>
-              <div className="message">{elem}</div>
-              <div className="response">{respon[index]}</div>
+              <div className="message animated rotateInDownRight">{elem}</div>
+              <div className="response animated lightSpeedIn">{respon[index]}</div>
             </div>)
            )}
         </div>
          <div className="fixedBottom">
            <input className="input" value={meg} onChange={this.handleData.bind(this)}/>
-           <button className="button" onClick={this.sendMessage.bind(this)}>发送</button>
+           <Button className="button" type="primary" onClick={this.sendMessage.bind(this)}>发送</Button>
          </div>
       </div>
     )

@@ -124,7 +124,7 @@ class Gallery extends React.Component {
         ));
         return (
             <div className="gutter-example button-demo">
-                <BreadcrumbCustom first="UI" second="你在心中是最美" />
+                <BreadcrumbCustom first="UI" second="你在我心中是最美" />
                 <Row gutter={10}>
                     <Col className="gutter-row" md={5}>
                         {imgsTag[0]}

@@ -45,3 +45,5 @@ export const imgslist = () => get({url: config.MOCK_REQUEST_IMGS});
 export const weather = () => get({url: config.MOCK_REQUEST_WEATHER});
 
 export const delImgRequest = (params) => post({url: config.MOCK_REQUEST_DEL_IMAGE, data:{...params}});
+
+export const dash = () => get({url: config.MOCK_REQUEST_DASH});
