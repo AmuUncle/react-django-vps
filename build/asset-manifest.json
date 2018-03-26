@@ -1,12 +1,12 @@
 {
-  "charts.js": "static/js/charts.10acb705.js",
-  "charts.js.map": "static/js/charts.10acb705.js.map",
+  "charts.js": "static/js/charts.bd08efa3.js",
+  "charts.js.map": "static/js/charts.bd08efa3.js.map",
   "main.css": "static/css/main.a5c0e99c.css",
   "main.css.map": "static/css/main.a5c0e99c.css.map",
-  "main.js": "static/js/main.8c402b64.js",
-  "main.js.map": "static/js/main.8c402b64.js.map",
-  "static/js/0.4dd539d9.chunk.js": "static/js/0.4dd539d9.chunk.js",
-  "static/js/0.4dd539d9.chunk.js.map": "static/js/0.4dd539d9.chunk.js.map",
+  "main.js": "static/js/main.39dcc470.js",
+  "main.js.map": "static/js/main.39dcc470.js.map",
+  "static/js/0.cb82a62e.chunk.js": "static/js/0.cb82a62e.chunk.js",
+  "static/js/0.cb82a62e.chunk.js.map": "static/js/0.cb82a62e.chunk.js.map",
   "static\\media\\amuuncle.jpg": "static/media/amuuncle.8452a73c.jpg",
   "static\\media\\avtar.png": "static/media/avtar.bf36cb66.png",
   "static\\media\\beauty.jpg": "static/media/beauty.defb9858.jpg",
@@ -15,6 +15,6 @@
   "static\\media\\wea_bg.gif": "static/media/wea_bg.7a891f19.gif",
   "static\\media\\y6oxFxU60dYw9khW6q8jGw.woff2": "static/media/y6oxFxU60dYw9khW6q8jGw.3c9ecb33.woff2",
   "static\\media\\yuanyuan.jpg": "static/media/yuanyuan.650be47c.jpg",
-  "vendor.js": "static/js/vendor.087ff338.js",
-  "vendor.js.map": "static/js/vendor.087ff338.js.map"
+  "vendor.js": "static/js/vendor.06a2d5e7.js",
+  "vendor.js.map": "static/js/vendor.06a2d5e7.js.map"
 }

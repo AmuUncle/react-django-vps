@@ -31,6 +31,7 @@ import newsByALiYun from '../components/news/newsByALiYun';
 import Number from '../components/ui/Number';
 import FetchDemo from '../components/chat/chat';
 import PicturesWall from '../components/ui/PicturesWall';
+import NewDetail from '../components/news/newsDetail';
 
 const WysiwygBundle = (props) => (
     <Bundle load={Wysiwyg}>
@@ -88,6 +89,7 @@ export default class CRouter extends Component {
 
 
                 <Route exact path="/app/newsByALiYun" component={newsByALiYun} />
+                <Route exact path="/app/newsByALiYun/new" component={NewDetail} />
                 <Route exact path="/app/Chat" component={FetchDemo} />
 
 

@@ -2,14 +2,34 @@
  * Created by hao.cheng on 2017/5/6.
  */
 import React from 'react';
-import { Row, Col, Card, Avatar } from 'antd';
+import { Row, Col, Card, Avatar, Modal } from 'antd';
 import BreadcrumbCustom from '../BreadcrumbCustom';
 import PhotoSwipe from 'photoswipe';
 import PhotoswipeUIDefault from 'photoswipe/dist/photoswipe-ui-default';
 import 'photoswipe/dist/photoswipe.css';
 import 'photoswipe/dist/default-skin/default-skin.css';
 import reqwest from 'reqwest';
+import Iframe from 'react-iframe';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchData, receiveData } from '@/action';
 const { Meta } = Card;
+
+function info(url) {
+  Modal.info({
+    title: '新闻详情',
+    okText:'阅读完毕',
+    content: (
+    <Iframe url={url}
+            width='100%'
+            height='600px'
+            id="myId"
+            className="myClassname"
+            display="initial"
+            position="relative"
+            allowFullScreen/>)
+    })
+}
 
 class Gallery extends React.Component {
     state = {
@@ -56,12 +76,19 @@ class Gallery extends React.Component {
             });
           }
 
+    newClick = (newinfo) =>
+    {
+                const { receiveData } = this.props;
+                receiveData(newinfo, 'newurl');
+                const { history } = this.props;
+                history.push('/app/newsByALiYun/new');
+    }
     render() {
 
         const imgsTag = this.state.imgs.map(v1 => (
             v1.map(v2 => (
                 <div className="gutter-box" key={v2.title}>
-                <a href="http://mini.eastday.com/mobile/180303221434843.html" target="_blank" rel="noopener noreferrer">
+                <a onClick={() => this.newClick(v2)} target="_blank" rel="noopener noreferrer">
                     <Card bordered={false} bodyStyle={{ padding: 0 }} >
                         <div>
                             <img alt={v2.title} width="100%" src={v2.pic} />
@@ -160,5 +187,14 @@ class Gallery extends React.Component {
         )
     }
 }
+const mapStateToPorps = state => {
+    const { newurl } = state.httpData;
+    return { newurl };
+};
+const mapDispatchToProps = dispatch => ({
+    fetchData: bindActionCreators(fetchData, dispatch),
+    receiveData: bindActionCreators(receiveData, dispatch)
+});
 
-export default Gallery;
+
+export default connect(mapStateToPorps, mapDispatchToProps)(Gallery);
