@@ -51,6 +51,9 @@ export const menus = [
             { key: '/app/chart/recharts', title: 'recharts', icon: '', },
         ],
     },
+    {
+        key: '/app/Comment', title: '留言板', icon: 'message',
+    },
     //{
     //    key: '/sub4', title: '页面', icon: 'switcher',
     //    sub: [

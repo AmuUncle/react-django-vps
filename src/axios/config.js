@@ -14,3 +14,4 @@ export const MOCK_REQUEST_IMGS = EASY_MOCK + 'GetImgsList/';                    
 export const MOCK_REQUEST_WEATHER = EASY_MOCK + 'GetWeather/';                           // 获取天气接口
 export const MOCK_REQUEST_DEL_IMAGE = EASY_MOCK + 'DelImage/';                           // 删除照片接口
 export const MOCK_REQUEST_DASH = EASY_MOCK + 'Dash/';                           // 获取首页数据
+export const MOCK_REQUEST_COMMENT_DATA = EASY_MOCK + 'comment/';                           // 获取首页数据
