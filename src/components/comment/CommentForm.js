@@ -32,11 +32,9 @@ class CommentForm extends React.Component {
                 uUrl:'http://23.106.155.65:8001/avtar/40e087e48f0d06e0dc51c3ef790160c6.jpg',
                 uComment : this.state.comment,
                 uTime:myDate.toLocaleString(),
-                uReply : {
-                    hasReply : false,
-                    rName : null,
-                    rComment : null
-                }
+                endorse:0,
+                oppose:0,
+                uReply : ""
             }
             const { fetchData } = this.props;
             fetchData({funcName: 'commentData',params: {'data':commentData}, stateName: 'commentData'});
@@ -49,11 +47,9 @@ class CommentForm extends React.Component {
                 uUrl:'http://23.106.155.65:8001/avtar/40e087e48f0d06e0dc51c3ef790160c6.jpg',
                 uComment : this.state.comment,
                 uTime:myDate.toLocaleString(),
-                uReply : {
-                    hasReply : true,
-                    rName : this.props.data.uName,
-                    rComment : this.props.data.uComment
-                }
+                endorse:0,
+                oppose:0,
+                uReply : ""
             }
         }
     }
