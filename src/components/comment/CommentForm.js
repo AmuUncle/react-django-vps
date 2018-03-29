@@ -28,13 +28,15 @@ class CommentForm extends React.Component {
         if(this.props.classes === 1){
             let commentData = {
                 uName:userName,
-                uImg:'http://23.106.155.65:8001/avtar/40e087e48f0d06e0dc51c3ef790160c6.jpg',
-                uUrl:'http://23.106.155.65:8001/avtar/40e087e48f0d06e0dc51c3ef790160c6.jpg',
+                uImg:`http://23.106.155.65:8003/api/getAvatar/${myDate.getMilliseconds()}`,
+                uUrl:`http://23.106.155.65:8003/api/getAvatar/${myDate.getMilliseconds()}`,
                 uComment : this.state.comment,
                 uTime:myDate.toLocaleString(),
                 endorse:0,
                 oppose:0,
-                uReply : ""
+                hasReply : false,
+                rName : "",
+                rComment : ""
             }
             const { fetchData } = this.props;
             fetchData({funcName: 'commentData',params: {'data':commentData}, stateName: 'commentData'});
@@ -43,14 +45,18 @@ class CommentForm extends React.Component {
         if(this.props.classes === 2){
             let replyData = {
                 uName:userName,
-                uImg:'http://23.106.155.65:8001/avtar/40e087e48f0d06e0dc51c3ef790160c6.jpg',
-                uUrl:'http://23.106.155.65:8001/avtar/40e087e48f0d06e0dc51c3ef790160c6.jpg',
+                uImg:`http://23.106.155.65:8003/api/getAvatar/${myDate.getMilliseconds()}`,
+                uUrl:`http://23.106.155.65:8003/api/getAvatar/${myDate.getMilliseconds()}`,
                 uComment : this.state.comment,
                 uTime:myDate.toLocaleString(),
                 endorse:0,
                 oppose:0,
-                uReply : ""
+                hasReply : true,
+                rName : this.props.data.uName,
+                rComment : this.props.data.uComment
             }
+            const { fetchData } = this.props;
+            fetchData({funcName: 'commentData',params: {'data':replyData}, stateName: 'commentData'});
         }
     }
     render() {
